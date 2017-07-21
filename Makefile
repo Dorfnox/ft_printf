@@ -6,7 +6,7 @@
 #    By: bpierce <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/25 10:27:14 by bpierce           #+#    #+#              #
-#    Updated: 2017/07/20 19:06:36 by bpierce          ###   ########.fr        #
+#    Updated: 2017/07/20 19:37:26 by bpierce          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ O_SRC = $(addprefix $(O_LOC), $(O_NAM))
 H_LOCS = -I inc
 
 C_FLAGS = -Wall -Wextra -Werror
+
+.PHONY: all clean fclean re
 
 all: $(NAME)
 
@@ -57,5 +59,3 @@ fclean: clean
 	@/bin/rm -f $(NAME)
 
 re: fclean all
-
-.PHONY: all clean fclean re
