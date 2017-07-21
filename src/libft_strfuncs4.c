@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 11:09:02 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/20 19:31:24 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/21 15:08:19 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,18 @@ char	*ft_strfjoin(char **s1, const char *s2)
 	}
 	ft_strdel(s1);
 	return (newstr);
+}
+
+void	ft_strtolower(char **s)
+{
+	int	i;
+
+	i = 0;
+	while (s[0][i])
+	{
+		if (s[0][i] > 64 && s[0][i] < 91)
+			s[0][i] += 32;
+		i++;
+	}
+	return ;
 }

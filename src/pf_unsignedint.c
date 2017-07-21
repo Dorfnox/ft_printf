@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 10:38:15 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/20 19:34:41 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/21 15:37:36 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,20 @@
 
 static char	*ft_uintmax_to_ascii(uintmax_t val, int base, int xbase)
 {
-	char		*s;
-	size_t		len;
+	int			len;
 	char		*b_array;
-	uintmax_t	tmp;
+	char		*s;
+	uintmax_t	tmp_val;
 
-	if (!(b_array = ft_strdup(xbase != -1 ?
-					"0123456789ABCDEF" : "0123456789abcdef")))
+	if (!(b_array = ft_strdup("0123456789ABCDEF")))
 		return (NULL);
+	tmp_val = val;
 	len = 1;
-	tmp = val;
-	while (tmp /= 10)
+	while (tmp_val >= (uintmax_t)base)
+	{
+		tmp_val /= base;
 		len++;
+	}
 	if (!(s = ft_strnew(len)))
 		return (NULL);
 	while (len--)
@@ -37,6 +39,8 @@ static char	*ft_uintmax_to_ascii(uintmax_t val, int base, int xbase)
 		s[len] = b_array[val % base];
 		val /= base;
 	}
+	if (xbase == -1)
+		ft_strtolower(&s);
 	free(b_array);
 	return (s);
 }
@@ -106,23 +110,24 @@ int			pf_unsignedint(t_printf *p)
 {
 	char		*s;
 	char		pad;
-	int			s_len;
+	int			len;
 	int			f_alt;
 
-	s = ft_uintmax_to_ascii(p->pid->fmt->im, p->pid->base, p->pid->xbase);
+	if (!(s = ft_uintmax_to_ascii(PID->fmt->uim, PID->base, PID->xbase)))
+		return (-1);
 	pad = (p->pid->f_zero != -1 ? '0' : ' ');
-	s_len = ft_strlen(s);
+	len = ft_strlen(s);
 	f_alt = p->pid->f_alt;
 	if (f_alt == 16 || f_alt == 8)
-		if (!(s_len = add_alt(&s, p, f_alt)))
+		if (!(len = add_alt(&s, p, f_alt)))
 			return (-1);
-	if (p->pid->precision > s_len || f_alt == 16)
-		if (!(s_len = add_precision(&s, p->pid->precision - s_len, f_alt)))
+	if (p->pid->precision > len || f_alt == 16)
+		if (!(len = add_precision(&s, p->pid->precision - len, f_alt)))
 			return (-1);
 	if (p->pid->f_ladj != -1)
 		ft_putstr(s);
-	s_len += (s_len < FIELD_W) ? ft_putchars(pad, FIELD_W - s_len) : 0;
+	len += (len < FIELD_W) ? ft_putchars(pad, FIELD_W - len) : 0;
 	if (p->pid->f_ladj == -1)
 		ft_putstr(s);
-	return (s_len);
+	return (len);
 }

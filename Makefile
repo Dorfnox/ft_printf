@@ -6,7 +6,7 @@
 #    By: bpierce <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/25 10:27:14 by bpierce           #+#    #+#              #
-#    Updated: 2017/07/21 13:29:52 by bpierce          ###   ########.fr        #
+#    Updated: 2017/07/21 16:14:47 by bpierce          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,21 +32,37 @@ H_LOCS = -I inc
 
 C_FLAGS = -Wall -Wextra -Werror
 
-.PHONY: all clean fclean re
-
 all: $(NAME)
 
 $(NAME): $(O_SRC)
+	@echo Compiling $@ library...
 	@ar rcs $@ $^
+	@echo
+	@echo --------xxXXXXXXXXxx--------
+	@echo -----xXX------------XXx-----
+	@echo ---xXX--- COMPLETE ---XXx---
+	@echo ---xXX---- YIPPEE ----XXx---
+	@echo -----xXX------------XXx-----
+	@echo --------XXxxxxxxxxXX--------
 
 $(O_LOC)%.o: $(C_LOC)%.c
+	@echo Re-compiling $< file...
 	@gcc $(C_FLAGS) $(H_LOCS) -o $@ -c $<
-	@echo done
+
+test: $(NAME)
+	@gcc $(C_FLAGS) $(H_LOCS) $(NAME) main_for_testing.c
+	@./a.out
 
 clean:
+	@echo ... Cleaning .o files
 	@/bin/rm -rf $(O_SRC)
+	@echo ... Successfully removed .o files
 
 fclean: clean
+	@echo ... Cleaning $(NAME)
 	@/bin/rm -f $(NAME)
+	@echo ... Successfully removed $(NAME)
 
 re: fclean all
+
+.PHONY: all test clean fclean re

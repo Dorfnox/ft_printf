@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 18:23:30 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/20 19:34:01 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/21 15:17:35 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 
 # define PFT (*p)->type
 # define F_ALT (*p)->pid->f_alt
+# define PID p->pid
 # define FIELD_W p->pid->field_width
 # define CONVERSIONS "sSpdDioOuUxXcC"
 # define NUM_CONVERSIONS "dDioOuUxX"
@@ -264,5 +265,6 @@ char					*ft_strfremalloc(char **s);
 size_t					ft_putchars(const char c, size_t n);
 char					*ft_strofchars(const char c, size_t num);
 char					*ft_strfjoin(char **s1, const char *s2);
+void					ft_strtolower(char **s);
 
 #endif

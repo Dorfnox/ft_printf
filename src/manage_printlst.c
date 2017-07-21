@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 13:47:15 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/20 13:07:49 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/21 15:48:14 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int			storechar_printlst(t_printf **p, const char c, int i)
 	{
 		(*p)->next = new_printlst();
 		*p = (*p)->next;
+		(*p)->type = STRING_TYPE;
 	}
 	if ((*p)->str == NULL)
 	{
@@ -79,11 +80,11 @@ int			storechar_printlst(t_printf **p, const char c, int i)
 
 int			print_printlst(t_printf **p)
 {
-	t_printf	*tmp;
 	int			i;
+	t_printf	*tmp;
 
-	tmp = *p;
 	i = 0;
+	tmp = *p;
 	while (tmp)
 	{
 		if (tmp->type == STRING_TYPE)
