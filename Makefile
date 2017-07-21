@@ -6,7 +6,7 @@
 #    By: bpierce <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/25 10:27:14 by bpierce           #+#    #+#              #
-#    Updated: 2017/07/20 19:37:26 by bpierce          ###   ########.fr        #
+#    Updated: 2017/07/21 11:11:56 by bpierce          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,19 +37,9 @@ C_FLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(O_SRC)
-	@echo Compiling $@ library...
 	@ar rcs $@ $^
-	@echo
-	@echo --------xxXXXXXXXXxx--------
-	@echo -----xXX------------XXx-----
-	@echo ---xXX--- COMPLETE ---XXx---
-	@echo ---xXX---- YIPPEE ----XXx---
-	@echo -----xXX------------XXx-----
-	@echo --------XXxxxxxxxxXX--------
-	@echo
 
 $(O_LOC)%.o: $(C_LOC)%.c
-	@echo Re-compiling $< file...
 	@gcc $(C_FLAGS) $(H_LOCS) -o $@ -c $<
 
 clean:
