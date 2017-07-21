@@ -6,11 +6,11 @@
 #    By: bpierce <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/25 10:27:14 by bpierce           #+#    #+#              #
-#    Updated: 2017/07/20 16:42:36 by bpierce          ###   ########.fr        #
+#    Updated: 2017/07/20 19:04:11 by bpierce          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = test.out
+NAME = libftprintf.a
 
 FILES = ft_printf \
 		manage_printlst \
@@ -28,19 +28,15 @@ O_LOC = obj/
 O_NAM = $(addsuffix .o, $(FILES))
 O_SRC = $(addprefix $(O_LOC), $(O_NAM))
 
-LIB_LOC = libft/
-LIB_NAM = libft.a
-LIB_SRC = $(addprefix $(LIB_LOC), $(LIB_NAM))
-
-H_LOCS = -I inc -I libft/inc
+H_LOCS = -I inc
 
 C_FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): $(O_SRC) $(LIB_SRC)
-	@echo Compiling executable... $@
-	@gcc $(C_FLAGS) $^ -o $@
+$(NAME): $(O_SRC)
+	@echo Compiling $@ library...
+	@ar rcs $@ $^
 	@echo
 	@echo --------xxXXXXXXXXxx--------
 	@echo -----xXX------------XXx-----
@@ -51,16 +47,8 @@ $(NAME): $(O_SRC) $(LIB_SRC)
 	@echo
 
 $(O_LOC)%.o: $(C_LOC)%.c
-	@echo Re-compiling src file... $<
+	@echo Re-compiling $< file...
 	@gcc $(C_FLAGS) $(H_LOCS) -o $@ -c $<
-
-$(LIB_SRC): force
-	@echo ----------- Checking Libft Library -----------
-	@make -C $(LIB_LOC)
-	@echo ----------- Library Check Complete -----------
-
-force:
-	@true
 
 clean:
 	@/bin/rm -rf $(O_SRC)
@@ -72,4 +60,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all force clean fclean re
+.PHONY: all clean fclean re
