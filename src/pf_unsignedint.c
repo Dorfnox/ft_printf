@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 10:38:15 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/20 18:34:58 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/20 19:34:41 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static char	*ft_uintmax_to_ascii(uintmax_t val, int base, int xbase)
 	return (s);
 }
 
-static int add_alt(char **uintmax_str, t_printf *p, int f_alt)
+static int	add_alt(char **uintmax_str, t_printf *p, int f_alt)
 {
 	char	*alt;
 

@@ -6,7 +6,7 @@
 #    By: bpierce <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/25 10:27:14 by bpierce           #+#    #+#              #
-#    Updated: 2017/07/20 19:06:43 by bpierce          ###   ########.fr        #
+#    Updated: 2017/07/20 19:06:36 by bpierce          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ $(NAME): $(O_SRC)
 	@echo
 
 $(O_LOC)%.o: $(C_LOC)%.c
-	@echo Re-compiling file...   $<
+	@echo Re-compiling $< file...
 	@gcc $(C_FLAGS) $(H_LOCS) -o $@ -c $<
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 18:23:30 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/20 18:37:02 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/20 19:34:01 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,10 +154,10 @@ typedef struct			s_percentid
 }						t_percentid;
 
 /*
- ** If value == 0, use current str,
- ** else use id->print_func, which contains the address
- ** of the appropriate printer function.
- */
+** If value == 0, use current str,
+** else use id->print_func, which contains the address
+** of the appropriate printer function.
+*/
 
 typedef struct			s_printf
 {
@@ -169,8 +169,8 @@ typedef struct			s_printf
 }						t_printf;
 
 /*
- ** For creating an array of function pointers in the store_percentid function
- */
+** For creating an array of function pointers in the store_percentid function
+*/
 
 typedef struct			s_setfunc
 {
@@ -178,14 +178,14 @@ typedef struct			s_setfunc
 }						t_setfunc;
 
 /*
- ** ft_printf.c
- */
+** ft_printf.c
+*/
 
 int						ft_printf(char *s, ...);
 
 /*
- ** manage_printlst.c
- */
+** manage_printlst.c
+*/
 
 t_printf				*new_printlst(void);
 int						initialize_printlst(t_printf **p1, t_printf **p2);
@@ -193,8 +193,8 @@ int						storechar_printlst(t_printf **p, const char c, int i);
 int						print_printlst(t_printf **p);
 
 /*
- ** manage_percentid.c
- */
+** manage_percentid.c
+*/
 
 int						store_percentid(t_printf **p, char *s,
 						va_list *ap, int i);
@@ -206,8 +206,8 @@ int						store_percentid(t_printf **p, char *s,
 int						store_datafmt(t_printf **p, va_list *ap);
 
 /*
- ** set_percentid.c
- */
+** set_percentid.c
+*/
 
 int						set_flags(t_printf **p, char *s, int j);
 int						set_fieldwidth(t_printf **p, char *s, int j);
@@ -216,8 +216,8 @@ int						set_length(t_printf **p, char *s, int j);
 int						set_type(t_printf **p, char *s, int j);
 
 /*
- ** set_helper.c
- */
+** set_helper.c
+*/
 
 int						ft_islengthchar(int c);
 int						ft_isconversionchar(int c);
@@ -233,9 +233,9 @@ int						pf_signedint(t_printf *p);
 int						pf_unsignedint(t_printf *p);
 
 /*
- ** Libft functions:
- ** libft_{memfuncs, strfuncs1, strfuncs2, strfuncs3, strfuncs4}.c
- */
+** Libft functions:
+** libft_{memfuncs, strfuncs1, strfuncs2, strfuncs3, strfuncs4}.c
+*/
 
 void					*ft_memset(void *b, int c, size_t len);
 void					ft_bzero(void *s, size_t n);

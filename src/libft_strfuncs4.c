@@ -6,16 +6,16 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 11:09:02 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/20 15:53:08 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/20 19:31:24 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
- ** If given string such as "Hello\n\0\0\0\0\0\0\0\0"
- ** will return new string "Hello\n" and free space taken up by \0's
- */
+** If given string such as "Hello\n\0\0\0\0\0\0\0\0"
+** will return new string "Hello\n" and free space taken up by \0's
+*/
 
 char	*ft_strfremalloc(char **s)
 {

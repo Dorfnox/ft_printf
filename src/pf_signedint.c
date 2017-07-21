@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 10:38:15 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/20 18:30:15 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/20 19:33:20 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static char	*ft_intmax_to_ascii(intmax_t val, int base, char *b)
 ** pf_signedint for all signed data types
 */
 
-static int add_sign(char **intmax_str, t_printf *p)
+static int	add_sign(char **intmax_str, t_printf *p)
 {
 	char	*sign;
 
@@ -103,7 +103,7 @@ int			pf_signedint(t_printf *p)
 
 	if (!(barray = ft_strdup(p->pid->xbase != -1 ?
 					"0123456789ABCDEF" : "0123456789abcdef")))
-		return (-1); // Don't need this for signed
+		return (-1);
 	s = ft_intmax_to_ascii(p->pid->fmt->im, p->pid->base, barray);
 	pad = (p->pid->f_zero != -1 ? '0' : ' ');
 	s_len = ft_strlen(s);
