@@ -6,7 +6,7 @@
 #    By: bpierce <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/25 10:27:14 by bpierce           #+#    #+#              #
-#    Updated: 2017/07/21 11:11:56 by bpierce          ###   ########.fr        #
+#    Updated: 2017/07/21 13:29:52 by bpierce          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ $(NAME): $(O_SRC)
 
 $(O_LOC)%.o: $(C_LOC)%.c
 	@gcc $(C_FLAGS) $(H_LOCS) -o $@ -c $<
+	@echo done
 
 clean:
 	@/bin/rm -rf $(O_SRC)
