@@ -6,7 +6,7 @@
 #    By: bpierce <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/25 10:27:14 by bpierce           #+#    #+#              #
-#    Updated: 2017/07/20 19:04:11 by bpierce          ###   ########.fr        #
+#    Updated: 2017/07/20 19:06:43 by bpierce          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,16 +47,14 @@ $(NAME): $(O_SRC)
 	@echo
 
 $(O_LOC)%.o: $(C_LOC)%.c
-	@echo Re-compiling $< file...
+	@echo Re-compiling file...   $<
 	@gcc $(C_FLAGS) $(H_LOCS) -o $@ -c $<
 
 clean:
 	@/bin/rm -rf $(O_SRC)
-	@make clean -C $(LIB_LOC)
 
 fclean: clean
 	@/bin/rm -f $(NAME)
-	@make fclean -C $(LIB_LOC)
 
 re: fclean all
 
