@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 15:39:32 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/22 12:29:47 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/22 12:48:13 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ int		ft_printf(char *s, ...)
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] == '%' && s[i + 1] == '%')
-			i = (storechar_printlst(&p1, s[i], i) != -1 ? i + 2 : -1);
-		else if (s[i] == '%')
+		if (s[i] == '%')
 			i = store_percentid(&p1, &s[i], &ap, i);
 		else
 			i = storechar_printlst(&p1, s[i], i);

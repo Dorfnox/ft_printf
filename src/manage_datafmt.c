@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 14:10:10 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/21 17:35:21 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/22 13:53:16 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ static int			set_uniondata(t_printf **p, int type, va_list *ap)
 		(*p)->pid->fmt->p = va_arg(*ap, void *);
 	else if (type == WI_TYPE || type == WC_TYPE)
 		(*p)->pid->fmt->wi = va_arg(*ap, wint_t);
+	else if (type == PCNT_TYPE)
+		(*p)->print_func = &pf_percent;
 	return (1);
 }
 

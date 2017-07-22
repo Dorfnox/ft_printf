@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 18:23:30 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/21 15:17:35 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/22 13:51:31 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define F_ALT (*p)->pid->f_alt
 # define PID p->pid
 # define FIELD_W p->pid->field_width
-# define CONVERSIONS "sSpdDioOuUxXcC"
+# define CONVERSIONS "sSpdDioOuUxXcC%"
 # define NUM_CONVERSIONS "dDioOuUxX"
 # define LENGTHS "hljz"
 
@@ -51,6 +51,7 @@
 # define C_TYPE 11
 # define CC_TYPE 12
 # define P_TYPE 13
+# define PCNT_TYPE 14
 
 /*
 ** Type promotion defines for length, and data type after length implementation
@@ -63,19 +64,19 @@
 # define L_J 4
 # define L_Z 5
 
-# define SC_TYPE 14
-# define UC_TYPE 15
-# define SH_TYPE 16
-# define USH_TYPE 17
-# define L_TYPE 18
-# define UL_TYPE 19
-# define LL_TYPE 20
-# define ULL_TYPE 21
-# define IM_TYPE 22
-# define UIM_TYPE 23
-# define ST_TYPE 24
-# define WI_TYPE 25
-# define WC_TYPE 26
+# define SC_TYPE 20
+# define UC_TYPE 21
+# define SH_TYPE 22
+# define USH_TYPE 23
+# define L_TYPE 24
+# define UL_TYPE 25
+# define LL_TYPE 26
+# define ULL_TYPE 27
+# define IM_TYPE 28
+# define UIM_TYPE 29
+# define ST_TYPE 30
+# define WI_TYPE 31
+# define WC_TYPE 32
 
 /*
 ** Macros to check for signed types
@@ -225,13 +226,14 @@ int						ft_isconversionchar(int c);
 int						ft_isnumericconversionchar(int c);
 
 /*
-** pf_{character, string, signedint, unsignedint}.c
+** pf_{character, string, signedint, unsignedint, percent}.c
 */
 
 int						pf_character(t_printf *p);
 int						pf_string(t_printf *p);
 int						pf_signedint(t_printf *p);
 int						pf_unsignedint(t_printf *p);
+int						pf_percent(t_printf *p);
 
 /*
 ** Libft functions:

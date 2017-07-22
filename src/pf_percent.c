@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_string.c                                        :+:      :+:    :+:   */
+/*   pf_percent.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 15:14:57 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/22 13:47:35 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/22 13:55:31 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*add_fieldwidth(char **s, int f_ladj, int num_spaces)
+static char	*add_fieldwidth(char **s, int f_ladj, int spaces, char pad)
 {
 	char	*tmp;
 
-	if (!(tmp = ft_strofchars(' ', num_spaces)))
+	if (!(tmp = ft_strofchars(pad, spaces)))
 		return (NULL);
 	if (f_ladj != -1)
 	{
@@ -33,22 +33,22 @@ static char	*add_fieldwidth(char **s, int f_ladj, int num_spaces)
 	}
 	return (*s);
 }
-
-int		pf_string(t_printf *p)
+int		pf_percent(t_printf *p)
 {
+	char	pad;
 	char	*s;
-	int		nsp;
+	int		s_len;
+	int		spaces;
 
-	if (p->pid->precision != -1)
-	{
-		s = ft_strsub(p->pid->fmt->s, 0, p->pid->precision);
-		ft_strdel(&(p->pid->fmt->s));
-		p->pid->fmt->s = s;
-	}
-	nsp = PID->field_width - ft_strlen(p->pid->fmt->s);
-	if (nsp > 0)
-		if (!(PID->fmt->s = add_fieldwidth(&(PID->fmt->s), PID->f_ladj, nsp)))
+	if (!(s = ft_strdup("%")))
+		return (-1);
+	pad = (p->pid->f_zero != -1) ? '0' : ' ';
+	pad = (p->pid->f_ladj != -1) ? ' ' : pad;
+	s_len = 1;
+	spaces = p->pid->field_width - s_len;
+	if (spaces > 0)
+		if (!(s = add_fieldwidth(&s, p->pid->f_ladj, spaces, pad)))
 			return (-1);
-	ft_putstr(p->pid->fmt->s);
-	return (ft_strlen(p->pid->fmt->s));
+	ft_putstr(s);
+	return (ft_strlen(s));
 }
