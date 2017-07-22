@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 15:01:27 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/19 23:48:18 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/21 17:40:25 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,11 @@ int					store_percentid(t_printf **p, char *s, va_list *ap, int i)
 	j = 0;
 	k = 0;
 	initialize_setfunc(set);
-	(*p)->next = new_printlst();
-	*p = (*p)->next;
+	if ((*p)->type != -1)
+	{
+		(*p)->next = new_printlst();
+		*p = (*p)->next;
+	}
 	if (s[++j])
 	{
 		if (!((*p)->pid = new_percentid()))
