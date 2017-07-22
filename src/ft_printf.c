@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 15:39:32 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/21 16:46:26 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/22 12:29:47 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ int		ft_printf(char *s, ...)
 		else
 			i = storechar_printlst(&p1, s[i], i);
 		if (i == -1)
-			return (-1);
+			break ;
 	}
-	i = print_printlst(&p2);
+	if (i != 0 && i != -1)
+		i = print_printlst(&p2);
+	// Free memory
 	return (i);
 }

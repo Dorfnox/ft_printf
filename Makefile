@@ -6,7 +6,7 @@
 #    By: bpierce <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/25 10:27:14 by bpierce           #+#    #+#              #
-#    Updated: 2017/07/21 16:14:47 by bpierce          ###   ########.fr        #
+#    Updated: 2017/07/22 12:17:40 by bpierce          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ $(NAME): $(O_SRC)
 	@echo ---xXX---- YIPPEE ----XXx---
 	@echo -----xXX------------XXx-----
 	@echo --------XXxxxxxxxxXX--------
+	@echo
 
 $(O_LOC)%.o: $(C_LOC)%.c
 	@echo Re-compiling $< file...
@@ -54,12 +55,12 @@ test: $(NAME)
 	@./a.out
 
 clean:
-	@echo ... Cleaning .o files
+	@echo Cleaning .o files...
 	@/bin/rm -rf $(O_SRC)
 	@echo ... Successfully removed .o files
 
 fclean: clean
-	@echo ... Cleaning $(NAME)
+	@echo Cleaning $(NAME)...
 	@/bin/rm -f $(NAME)
 	@echo ... Successfully removed $(NAME)
 
