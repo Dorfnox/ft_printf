@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 10:38:15 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/22 15:45:42 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/22 16:12:43 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,25 +68,26 @@ static int add_fieldwidth(char **str, char **chars, t_printf *p, char pad)
 
 	if (pad == '0')
 	{
-		tmp = ft_strsub(*str, 0, (p->pid->f_alt == 16 ? 2 : 1));
-		tmp2 = ft_strsub(*str, (p->pid->f_alt == 16 ? 2 : 1),
-				ft_strlen(*str) - (p->pid->f_alt == 16 ? 2 : 1));
-		tmp = ft_strfjoin(&tmp, *chars);
-		tmp = ft_strfjoin(&tmp, tmp2);
-		ft_strdelthree(chars, &tmp2, str);
-		*str = tmp;
-	}
-	else if (p->pid->f_ladj != -1)
-	{
-		*str = ft_strfjoin(str, *chars);
-		ft_strdel(chars);
+		if (p->pid->f_alt == 16 || p->pid->f_alt == 8)
+		{
+			tmp = ft_strsub(*str, 0, (p->pid->f_alt == 16 ? 2 : 1));
+			tmp2 = ft_strsub(*str, (p->pid->f_alt == 16 ? 2 : 1),
+					ft_strlen(*str) - (p->pid->f_alt == 16 ? 2 : 1));
+			tmp = ft_strfjoin(&tmp, *chars);
+			tmp = ft_strfjoin(&tmp, tmp2);
+			ft_strdeltwo(chars, &tmp2);
+		}
+		else
+			tmp = ft_strfjoin(chars, *str);
+		ft_strdel(str);
 	}
 	else
 	{
-		*chars = ft_strfjoin(chars, *str);
-		ft_strdel(str);
-		*str = *chars;
+		tmp = ft_strfjoin((p->pid->f_ladj != -1 ? str : chars),
+				(p->pid->f_ladj != -1 ? *chars : *str));
+		ft_strdel(p->pid->f_ladj != -1 ? chars : str);
 	}
+	*str = tmp;
 	return ((int)ft_strlen(*str));
 }
 
