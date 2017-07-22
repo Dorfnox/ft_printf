@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 10:38:15 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/21 15:37:36 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/22 15:45:42 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,73 +61,72 @@ static int	add_alt(char **uintmax_str, t_printf *p, int f_alt)
 	return ((int)ft_strlen(*uintmax_str));
 }
 
-static char	*add_precision_hex(char **uintmax_str, int num_of_zeros)
+static int add_fieldwidth(char **str, char **chars, t_printf *p, char pad)
 {
 	char	*tmp;
 	char	*tmp2;
-	char	*tmp3;
 
-	if (!(tmp = ft_strsub(*uintmax_str, 0, 2)))
-		return (0);
-	if (!(tmp2 = ft_strofchars('0', num_of_zeros)))
-		return (0);
-	if (!(tmp3 = ft_strsub(*uintmax_str, 2, ft_strlen(*uintmax_str) - 2)))
-		return (0);
-	tmp = ft_strfjoin(&tmp, tmp2);
-	tmp = ft_strfjoin(&tmp, tmp3);
-	ft_strdel(&tmp2);
-	ft_strdel(&tmp3);
-	return (tmp);
-}
-
-static int	add_precision(char **uintmax_str, int num_of_zeros, int f_alt)
-{
-	char	*tmp;
-
-	if (f_alt == 16)
+	if (pad == '0')
 	{
-		if ((num_of_zeros + 2) > 0)
-		{
-			if (!(tmp = add_precision_hex(uintmax_str, num_of_zeros + 2)))
-				return (0);
-			ft_strdel(uintmax_str);
-			*uintmax_str = tmp;
-		}
+		tmp = ft_strsub(*str, 0, (p->pid->f_alt == 16 ? 2 : 1));
+		tmp2 = ft_strsub(*str, (p->pid->f_alt == 16 ? 2 : 1),
+				ft_strlen(*str) - (p->pid->f_alt == 16 ? 2 : 1));
+		tmp = ft_strfjoin(&tmp, *chars);
+		tmp = ft_strfjoin(&tmp, tmp2);
+		ft_strdelthree(chars, &tmp2, str);
+		*str = tmp;
+	}
+	else if (p->pid->f_ladj != -1)
+	{
+		*str = ft_strfjoin(str, *chars);
+		ft_strdel(chars);
 	}
 	else
 	{
-		if (!(tmp = ft_strofchars('0', num_of_zeros)))
-			return (0);
-		if (!(tmp = ft_strfjoin(&tmp, *uintmax_str)))
-			return (0);
-		ft_strdel(uintmax_str);
-		*uintmax_str = tmp;
+		*chars = ft_strfjoin(chars, *str);
+		ft_strdel(str);
+		*str = *chars;
 	}
+	return ((int)ft_strlen(*str));
+}
+
+static int	add_precision(char **uintmax_str, int num_of_zeros)
+{
+	char	*tmp;
+
+	if (!(tmp = ft_strofchars('0', num_of_zeros)))
+		return (0);
+	if (!(tmp = ft_strfjoin(&tmp, *uintmax_str)))
+		return (0);
+	ft_strdel(uintmax_str);
+	*uintmax_str = tmp;
 	return ((int)ft_strlen(*uintmax_str));
 }
 
 int			pf_unsignedint(t_printf *p)
 {
 	char		*s;
+	char		*tmp;
 	char		pad;
 	int			len;
-	int			f_alt;
 
 	if (!(s = ft_uintmax_to_ascii(PID->fmt->uim, PID->base, PID->xbase)))
 		return (-1);
 	pad = (p->pid->f_zero != -1 ? '0' : ' ');
 	len = ft_strlen(s);
-	f_alt = p->pid->f_alt;
-	if (f_alt == 16 || f_alt == 8)
-		if (!(len = add_alt(&s, p, f_alt)))
+	if (p->pid->precision > len)
+		if (!(len = add_precision(&s, p->pid->precision - len)))
 			return (-1);
-	if (p->pid->precision > len || f_alt == 16)
-		if (!(len = add_precision(&s, p->pid->precision - len, f_alt)))
+	if (p->pid->f_alt == 16 || p->pid->f_alt == 8)
+		if (!(len = add_alt(&s, p, p->pid->f_alt)))
 			return (-1);
-	if (p->pid->f_ladj != -1)
-		ft_putstr(s);
-	len += (len < FIELD_W) ? ft_putchars(pad, FIELD_W - len) : 0;
-	if (p->pid->f_ladj == -1)
-		ft_putstr(s);
+	if (p->pid->field_width > len)
+	{
+		if (!(tmp = ft_strofchars(pad, p->pid->field_width - len)))
+			return (-1);
+		if (!(len = add_fieldwidth(&s, &tmp, p, pad)))
+			return (-1);
+	}
+	ft_putstr(s);
 	return (len);
 }

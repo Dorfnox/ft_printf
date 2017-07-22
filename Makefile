@@ -6,7 +6,7 @@
 #    By: bpierce <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/25 10:27:14 by bpierce           #+#    #+#              #
-#    Updated: 2017/07/22 13:09:51 by bpierce          ###   ########.fr        #
+#    Updated: 2017/07/22 15:44:53 by bpierce          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ FILES = ft_printf \
 		manage_datafmt \
 		pf_character pf_string pf_signedint pf_unsignedint pf_percent \
 		libft_memfuncs libft_strfuncs1 libft_strfuncs2 libft_strfuncs3 \
-		libft_strfuncs4
+		libft_strfuncs4 libft_strfuncs5
 
 C_LOC = src/
 C_NAM = $(addsuffix .c, $(FILES))

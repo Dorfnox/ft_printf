@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 18:23:30 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/22 13:51:31 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/22 15:45:11 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,7 +237,7 @@ int						pf_percent(t_printf *p);
 
 /*
 ** Libft functions:
-** libft_{memfuncs, strfuncs1, strfuncs2, strfuncs3, strfuncs4}.c
+** libft_{memfuncs, strfuncs1, strfuncs2, strfuncs3, strfuncs4, strfuncs5}.c
 */
 
 void					*ft_memset(void *b, int c, size_t len);
@@ -268,5 +268,7 @@ size_t					ft_putchars(const char c, size_t n);
 char					*ft_strofchars(const char c, size_t num);
 char					*ft_strfjoin(char **s1, const char *s2);
 void					ft_strtolower(char **s);
+
+void					ft_strdelthree(char **as, char **as2, char **as3);
 
 #endif
