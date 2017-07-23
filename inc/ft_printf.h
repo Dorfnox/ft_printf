@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 18:23:30 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/22 16:02:12 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/22 21:24:08 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,13 @@
 ** Macros for saving space and general helpfulness
 */
 
-# define PFT (*p)->type
-# define F_ALT (*p)->pid->f_alt
 # define PID p->pid
 # define FIELD_W p->pid->field_width
+# define PFT (*p)->type
+# define PPID (*p)->pid
+# define F_ALT (*p)->pid->f_alt
+# define UIM (*p)->pid->fmt->uim
+# define IM (*p)->pid->fmt->im
 # define CONVERSIONS "sSpdDioOuUxXcC%"
 # define NUM_CONVERSIONS "dDioOuUxX"
 # define LENGTHS "hljz"
@@ -96,6 +99,8 @@
 ** Macros to check for unsigned types
 */
 
+# define IS_P(x) (x == P_TYPE)
+
 # define IS_O(x) (x == O_TYPE || x == OO_TYPE)
 # define IS_U(x) (x == U_TYPE || x == UU_TYPE)
 # define IS_X(x) (x == X_TYPE || x == XX_TYPE)
@@ -107,14 +112,12 @@
 # define IS_ULL(x) (x == ULL_TYPE)
 # define IS_UIM(x) (x == UIM_TYPE)
 # define IS_UNSIGNED1(x) (IS_OUX(x) || IS_UC(x) || IS_USH(x))
-# define IS_UNSIGNED2(x) (IS_UL(x) || IS_ULL(x) || IS_UIM(x))
+# define IS_UNSIGNED2(x) (IS_UL(x) || IS_ULL(x) || IS_UIM(x) || IS_P(x))
 # define IS_UNSIGNED(x) (IS_UNSIGNED1(x) || IS_UNSIGNED2(x))
 
 /*
-** Macros to check for pointer / wide types
+** Macros to check for wide types
 */
-
-# define IS_P(x) (x == P_TYPE)
 
 # define IS_WI(x) (x == WI_TYPE)
 # define IS_WC(x) (x == WC_TYPE)
@@ -271,5 +274,6 @@ void					ft_strtolower(char **s);
 
 void					ft_strdeltwo(char **as, char **as2);
 void					ft_strdelthree(char **as, char **as2, char **as3);
+char					*ft_strffjoin(char **s1, char **s2);
 
 #endif

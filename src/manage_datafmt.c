@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 14:10:10 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/22 13:53:16 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/22 21:21:31 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,34 @@
 
 static void			set_unsigned(t_printf **p, int type, va_list *ap)
 {
-	if (IS_OUX(type) || IS_UC(type) || IS_USH(type))
-		(*p)->pid->fmt->uim = (uintmax_t)va_arg(*ap, unsigned int);
+	if (IS_OUX(type))
+		UIM = (uintmax_t)va_arg(*ap, unsigned int);
+	else if (IS_UC(type))
+		UIM = (uintmax_t)(unsigned char)va_arg(*ap, unsigned int);
+	else if (IS_USH(type))
+		UIM = (uintmax_t)(unsigned short)va_arg(*ap, unsigned int);
 	else if (IS_UL(type))
-		(*p)->pid->fmt->uim = (uintmax_t)va_arg(*ap, unsigned long);
+		UIM = (uintmax_t)va_arg(*ap, unsigned long);
 	else if (IS_ULL(type))
-		(*p)->pid->fmt->uim = (uintmax_t)va_arg(*ap, unsigned long long);
-	else if (IS_UIM(type))
-		(*p)->pid->fmt->uim = (uintmax_t)va_arg(*ap, uintmax_t);
+		UIM = (uintmax_t)va_arg(*ap, unsigned long long);
+	else if (IS_UIM(type) || IS_P(type))
+		UIM = (uintmax_t)va_arg(*ap, uintmax_t);
 }
 
 static void			set_signed(t_printf **p, int type, va_list *ap)
 {
-	if (IS_DI(type) || IS_SC(type) || IS_SH(type))
-		(*p)->pid->fmt->im = (intmax_t)va_arg(*ap, int);
+	if (IS_DI(type))
+		IM = (intmax_t)va_arg(*ap, int);
+	if (IS_SC(type))
+		IM = (intmax_t)(signed char)va_arg(*ap, int);
+	if (IS_SH(type))
+		IM = (intmax_t)(short)va_arg(*ap, int);
 	else if (IS_L(type))
-		(*p)->pid->fmt->im = (intmax_t)va_arg(*ap, long);
+		IM = (intmax_t)va_arg(*ap, long);
 	else if (IS_LL(type))
-		(*p)->pid->fmt->im = (intmax_t)va_arg(*ap, long long);
+		IM = (intmax_t)va_arg(*ap, long long);
 	else if (IS_IM(type))
-		(*p)->pid->fmt->im = (intmax_t)va_arg(*ap, intmax_t);
+		IM = (intmax_t)va_arg(*ap, intmax_t);
 }
 
 static int			set_uniondata(t_printf **p, int type, va_list *ap)
@@ -54,8 +62,6 @@ static int			set_uniondata(t_printf **p, int type, va_list *ap)
 		IS_SIGNED(type) ? set_signed(p, type, ap) : set_unsigned(p, type, ap);
 		(*p)->print_func = IS_SIGNED(type) ? &pf_signedint : &pf_unsignedint;
 	}
-	else if (type == P_TYPE)
-		(*p)->pid->fmt->p = va_arg(*ap, void *);
 	else if (type == WI_TYPE || type == WC_TYPE)
 		(*p)->pid->fmt->wi = va_arg(*ap, wint_t);
 	else if (type == PCNT_TYPE)

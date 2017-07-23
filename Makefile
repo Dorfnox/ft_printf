@@ -6,7 +6,7 @@
 #    By: bpierce <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/25 10:27:14 by bpierce           #+#    #+#              #
-#    Updated: 2017/07/22 15:44:53 by bpierce          ###   ########.fr        #
+#    Updated: 2017/07/23 10:51:49 by bpierce          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,14 +55,14 @@ test: $(NAME)
 	@./a.out
 
 clean:
-	@echo Cleaning .o files...
+	@echo Cleaning .o files ...
 	@/bin/rm -rf $(O_SRC)
 	@echo ... Successfully removed .o files
 
 fclean: clean
-	@echo Cleaning $(NAME)...
+	@echo Cleaning $(NAME) ...
 	@/bin/rm -f $(NAME)
-	@echo ... Successfully removed $(NAME)
+	@echo ...Successfully removed $(NAME)
 
 re: fclean all
 

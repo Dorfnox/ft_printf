@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 15:14:57 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/22 13:55:31 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/22 18:10:07 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static char	*add_fieldwidth(char **s, int f_ladj, int spaces, char pad)
 	}
 	return (*s);
 }
-int		pf_percent(t_printf *p)
+
+int			pf_percent(t_printf *p)
 {
 	char	pad;
 	char	*s;

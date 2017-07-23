@@ -6,28 +6,11 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 10:38:15 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/21 16:49:21 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/22 17:42:21 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-/*
-** Get the number of characters in intmax_t number NOT INCLUDING sign character
-*/
-
-static int	intmax_num_length(intmax_t n)
-{
-	size_t i;
-
-	i = 1;
-	if (n == INTMAX_MIN)
-		n = (INTMAX_MIN + 1) * -1;
-	n *= (n < 0) ? -1 : 1;
-	while (n /= 10)
-		i++;
-	return (i);
-}
 
 /*
 ** Returns ONLY the number WITHOUT a sign character.
@@ -37,9 +20,13 @@ static char	*ft_intmax_to_ascii(intmax_t val, int base, char *b)
 {
 	char		*s;
 	size_t		len;
+	intmax_t	tmp;
 	int			flag;
 
-	len = intmax_num_length(val);
+	len = 1;
+	tmp = val;
+	while (tmp /= 10)
+		len++;
 	flag = 0;
 	if (!(s = ft_strnew(len)))
 		return (NULL);
@@ -58,9 +45,34 @@ static char	*ft_intmax_to_ascii(intmax_t val, int base, char *b)
 	return (s);
 }
 
-/*
-** pf_signedint for all signed data types
-*/
+static int	add_fieldwidth(char **str, char **chars, t_printf *p)
+{
+	char	*tmp;
+	char	*tmp2;
+
+	if (chars[0][0] == '0')
+	{
+		if (PID->f_sign != -1 || PID->f_space != -1 || PID->fmt->im < 0)
+		{
+			tmp = ft_strsub(*str, 0, 1);
+			tmp2 = ft_strsub(*str, 1, ft_strlen(*str) - 1);
+			tmp = ft_strfjoin(&tmp, *chars);
+			tmp = ft_strfjoin(&tmp, tmp2);
+			ft_strdeltwo(chars, &tmp2);
+		}
+		else
+			tmp = ft_strfjoin(chars, *str);
+		ft_strdel(str);
+	}
+	else
+	{
+		tmp = ft_strfjoin((p->pid->f_ladj != -1 ? str : chars),
+				(p->pid->f_ladj != -1 ? *chars : *str));
+		ft_strdel(p->pid->f_ladj != -1 ? chars : str);
+	}
+	*str = tmp;
+	return ((int)ft_strlen(*str));
+}
 
 static int	add_sign(char **intmax_str, t_printf *p)
 {
@@ -97,14 +109,11 @@ static int	add_precision(char **intmax_str, size_t num_of_zeros)
 int			pf_signedint(t_printf *p)
 {
 	char		*s;
-	char		*barray;
+	char		*tmp;
 	char		pad;
 	int			s_len;
 
-	if (!(barray = ft_strdup(p->pid->xbase != -1 ?
-					"0123456789ABCDEF" : "0123456789abcdef")))
-		return (-1);
-	s = ft_intmax_to_ascii(p->pid->fmt->im, p->pid->base, barray);
+	s = ft_intmax_to_ascii(p->pid->fmt->im, p->pid->base, "0123456789ABCDEF");
 	pad = (p->pid->f_zero != -1 ? '0' : ' ');
 	s_len = ft_strlen(s);
 	if (p->pid->precision > s_len)
@@ -113,11 +122,13 @@ int			pf_signedint(t_printf *p)
 	if (p->pid->f_sign != -1 || p->pid->f_space != -1 || p->pid->fmt->im < 0)
 		if (!(s_len = add_sign(&s, p)))
 			return (-1);
-	if (p->pid->f_ladj != -1)
-		ft_putstr(s);
-	s_len += (s_len < FIELD_W) ? ft_putchars(pad, FIELD_W - s_len) : 0;
-	if (p->pid->f_ladj == -1)
-		ft_putstr(s);
-	free(barray);
+	if (p->pid->field_width > s_len)
+	{
+		if (!(tmp = ft_strofchars(pad, p->pid->field_width - s_len)))
+			return (-1);
+		if (!(s_len = add_fieldwidth(&s, &tmp, p)))
+			return (-1);
+	}
+	ft_putstr(s);
 	return (s_len);
 }

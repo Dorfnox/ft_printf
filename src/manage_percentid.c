@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 15:01:27 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/22 12:58:58 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/22 19:49:39 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static void			continue_readjusting_percentid(t_printf **p)
 		PFT = (PFT == UU_TYPE) ? UL_TYPE : PFT;
 		(*p)->pid->len = L_L;
 	}
+	(*p)->pid->base = (PFT == P_TYPE) ? 16 : (*p)->pid->base;
+	(*p)->pid->f_alt = (PFT == P_TYPE) ? 16 : (*p)->pid->f_alt;
 }
 
 /*
@@ -113,11 +115,8 @@ int					store_percentid(t_printf **p, char *s, va_list *ap, int i)
 	j = 0;
 	k = 0;
 	initialize_setfunc(set);
-	if ((*p)->type != -1)
-	{
-		(*p)->next = new_printlst();
-		*p = (*p)->next;
-	}
+	(*p)->next = ((*p)->type != -1) ? new_printlst() : NULL;
+	*p = ((*p)->type != -1) ? (*p)->next : *p;
 	if (s[++j])
 	{
 		if (!((*p)->pid = new_percentid()))
