@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 14:10:10 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/22 21:21:31 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/23 11:38:14 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static void			set_unsigned(t_printf **p, int type, va_list *ap)
 		UIM = (uintmax_t)va_arg(*ap, unsigned long long);
 	else if (IS_UIM(type) || IS_P(type))
 		UIM = (uintmax_t)va_arg(*ap, uintmax_t);
+	else if (IS_ST(type))
+		UIM = (uintmax_t)va_arg(*ap, size_t);
 }
 
 static void			set_signed(t_printf **p, int type, va_list *ap)

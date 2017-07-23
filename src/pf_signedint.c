@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 10:38:15 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/22 17:42:21 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/23 13:17:57 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,11 +113,14 @@ int			pf_signedint(t_printf *p)
 	char		pad;
 	int			s_len;
 
-	s = ft_intmax_to_ascii(p->pid->fmt->im, p->pid->base, "0123456789ABCDEF");
+	if (!(s = (PID->precision == 0 && PID->fmt->im == 0) ? ft_strnew(0) :
+				ft_intmax_to_ascii(p->pid->fmt->im, p->pid->base,
+					"0123456789ABCDEF")))
+		return (-1);
 	pad = (p->pid->f_zero != -1 ? '0' : ' ');
 	s_len = ft_strlen(s);
 	if (p->pid->precision > s_len)
-		if (!(s_len = add_precision(&s, (size_t)(p->pid->precision - s_len))))
+		if (!(s_len = add_precision(&s, p->pid->precision - s_len)))
 			return (-1);
 	if (p->pid->f_sign != -1 || p->pid->f_space != -1 || p->pid->fmt->im < 0)
 		if (!(s_len = add_sign(&s, p)))

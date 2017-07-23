@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 10:38:15 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/22 21:13:53 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/23 11:30:45 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ static char	*ft_uintmax_to_ascii(uintmax_t val, int base, int xbase)
 	char		*s;
 	uintmax_t	tmp_val;
 
-	//if (val == 0 && base != 10)
-	//	return (ft_strnew(0));
-	if (!(b_array = ft_strdup("0123456789ABCDEF")))
-		return (NULL);
+	b_array = "0123456789ABCDEF";
 	tmp_val = val;
 	s_len = 0;
 	while (++s_len && tmp_val >= (uintmax_t)base)
@@ -38,8 +35,7 @@ static char	*ft_uintmax_to_ascii(uintmax_t val, int base, int xbase)
 		s[s_len] = b_array[val % base];
 		val /= base;
 	}
-	ft_strtolower((xbase == -1) ? &s : &b_array);
-	free(b_array);
+	(xbase == -1) ? ft_strtolower(&s) : 0;
 	return (s);
 }
 
@@ -69,7 +65,7 @@ static int	add_fieldwidth(char **str, char **chars, t_printf *p)
 		ft_strdel(p->pid->f_ladj != -1 ? chars : str);
 	}
 	*str = tmp;
-	return ((int)ft_strlen(*str));
+	return (ft_strlen(*str));
 }
 
 static int	add_alt(char **str, int xbase, int f_alt)
@@ -96,10 +92,10 @@ static int	add_alt(char **str, int xbase, int f_alt)
 				return (-1);
 		}
 	}
-	return ((int)ft_strlen(*str));
+	return (ft_strlen(*str));
 }
 
-static int	add_precision(char **str, int num_of_zeros, int alt)
+static int	add_prec(char **str, int num_of_zeros, int alt)
 {
 	char	*tmp;
 
@@ -115,7 +111,7 @@ static int	add_precision(char **str, int num_of_zeros, int alt)
 		if ((add_alt(str, 0, alt)) == -1)
 			return (-1);
 	}
-	return ((int)ft_strlen(*str));
+	return (ft_strlen(*str));
 }
 
 int			pf_unsignedint(t_printf *p)
@@ -125,17 +121,13 @@ int			pf_unsignedint(t_printf *p)
 	char		pad;
 	int			s_len;
 
-	if (PID->precision != 0 || PID->base == 10)
-	{
-		if (!(s = ft_uintmax_to_ascii(PID->fmt->uim, PID->base, PID->xbase)))
-			return (-1);
-	}
-	else
-		s = ft_strnew(0);
+	if (!(s = (PID->precision == 0 && PID->base != 10) ? ft_strnew(0) :
+				ft_uintmax_to_ascii(PID->fmt->uim, PID->base, PID->xbase)))
+		return (-1);
 	pad = (p->pid->f_zero != -1 ? '0' : ' ');
 	s_len = ft_strlen(s);
 	if (PID->precision > s_len || PID->f_alt == 8)
-		if ((s_len = add_precision(&s, PID->precision - s_len, PID->f_alt)) == -1)
+		if ((s_len = add_prec(&s, PID->precision - s_len, PID->f_alt)) == -1)
 			return (-1);
 	if (PID->f_alt != -1 && PID->base == 16)
 		if ((s_len = add_alt(&s, PID->xbase, PID->f_alt)) == -1)

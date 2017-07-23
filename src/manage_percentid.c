@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 15:01:27 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/22 19:49:39 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/23 13:14:43 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static void			readjust_percentid(t_printf **p, char *s, int j)
 		(*p)->pid->f_space = ((*p)->pid->f_sign != -1
 				? -1 : (*p)->pid->f_space);
 	}
+	//PFT = (IS_OO(PFT) || IS_UU(PFT) || IS_XX(PFT)) ? UL_TYPE : PFT;
 	PFT = (IS_DI(PFT)) && ((*p)->pid->len == L_HH) ? SC_TYPE : PFT;
 	PFT = (IS_OUX(PFT)) && ((*p)->pid->len == L_HH) ? UC_TYPE : PFT;
 	PFT = (IS_DI(PFT)) && ((*p)->pid->len == L_H) ? SH_TYPE : PFT;

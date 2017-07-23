@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 18:23:30 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/22 21:24:08 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/23 11:45:01 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,17 +101,24 @@
 
 # define IS_P(x) (x == P_TYPE)
 
-# define IS_O(x) (x == O_TYPE || x == OO_TYPE)
-# define IS_U(x) (x == U_TYPE || x == UU_TYPE)
-# define IS_X(x) (x == X_TYPE || x == XX_TYPE)
-# define IS_OUX(x) (IS_O(x) || IS_U(x) || IS_X(x))
+# define IS_O(x) (x == O_TYPE)
+# define IS_OO(x) (x == OO_TYPE)
+# define IS_OOO(x) (x == O_TYPE || x == OO_TYPE)
+# define IS_U(x) (x == U_TYPE)
+# define IS_UU(x) (x == UU_TYPE)
+# define IS_UUU(x) (x == U_TYPE || x == UU_TYPE)
+# define IS_X(x) (x == X_TYPE)
+# define IS_XX(x) (x == XX_TYPE)
+# define IS_XXX(x) (x == X_TYPE || x == XX_TYPE)
+# define IS_OUX(x) (IS_OOO(x) || IS_UUU(x) || IS_XXX(x))
 
+# define IS_ST(x) (x == ST_TYPE)
 # define IS_UC(x) (x == UC_TYPE)
 # define IS_USH(x) (x == USH_TYPE)
 # define IS_UL(x) (x == UL_TYPE)
 # define IS_ULL(x) (x == ULL_TYPE)
 # define IS_UIM(x) (x == UIM_TYPE)
-# define IS_UNSIGNED1(x) (IS_OUX(x) || IS_UC(x) || IS_USH(x))
+# define IS_UNSIGNED1(x) (IS_OUX(x) || IS_ST(x) || IS_UC(x) || IS_USH(x))
 # define IS_UNSIGNED2(x) (IS_UL(x) || IS_ULL(x) || IS_UIM(x) || IS_P(x))
 # define IS_UNSIGNED(x) (IS_UNSIGNED1(x) || IS_UNSIGNED2(x))
 
