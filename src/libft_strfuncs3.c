@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/14 17:57:10 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/18 18:41:07 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/24 16:16:51 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ char	*ft_strdup(const char *s1)
 	char	*s;
 	int		i;
 
+	if (!s1)
+		return (NULL);
 	if (!(s = ft_strnew(ft_strlen(s1))))
 		return (NULL);
 	i = 0;

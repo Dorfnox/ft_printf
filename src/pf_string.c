@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 15:14:57 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/22 18:10:36 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/24 16:32:03 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ int			pf_string(t_printf *p)
 	char	*s;
 	int		nsp;
 
+	if (p->pid->fmt->s == NULL)
+		if (!(p->pid->fmt->s = ft_strdup("(null)")))
+			return (-1);
 	if (p->pid->precision != -1)
 	{
 		s = ft_strsub(p->pid->fmt->s, 0, p->pid->precision);

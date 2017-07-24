@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 14:10:10 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/24 14:45:39 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/24 16:34:42 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ static int			set_uniondata(t_printf **p, int type, va_list *ap)
 	}
 	else if (type == S_TYPE)
 	{
-		if (!((*p)->pid->fmt->s = ft_strdup(va_arg(*ap, char *))))
-			return (0);
+		(*p)->pid->fmt->s = ft_strdup(va_arg(*ap, char *));
 		(*p)->print_func = &pf_string;
 	}
 	else if (IS_SIGNED(type) || IS_UNSIGNED(type))
@@ -88,8 +87,8 @@ static int			set_uniondata(t_printf **p, int type, va_list *ap)
 int					store_datafmt(t_printf **p, va_list *ap)
 {
 	if (!((*p)->pid->fmt = (t_datafmt *)ft_memalloc(sizeof(t_datafmt *))))
-		return (-1);
+		return (0);
 	if (!(set_uniondata(p, (*p)->type, ap)))
-		return (-1);
+		return (0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 15:01:27 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/24 14:56:23 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/24 16:24:45 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,8 @@ int					store_percentid(t_printf **p, char *s, va_list *ap, int i)
 		if (j != -1)
 		{
 			readjust_percentid(p, s, j);
-			store_datafmt(p, ap);
+			if (!(store_datafmt(p, ap)))
+				return (-1);
 			return (j + i);
 		}
 	}
