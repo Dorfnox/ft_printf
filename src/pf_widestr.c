@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/24 13:41:37 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/24 14:53:35 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/24 15:27:24 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,6 @@ int			pf_widestr(t_printf *p)
 	if (p->pid->precision != -1)
 		if (!(PID->fmt->ws = adjust_precision(&(PID->fmt->ws), PID->precision)))
 			return (-1);
-	//	ws = ft_wstrsub(PID->fmt->ws, 0, PID->precision);
-	//	ft_strdel(&(PID->fmt->ws));
-	//	PID->fmt->ws = ws;
 	nsp = PID->field_width - ft_wstrlen(PID->fmt->ws);
 	if (nsp > 0)
 		if (!(fw = ft_strofchars(' ', nsp)))
