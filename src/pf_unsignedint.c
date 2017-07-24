@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 10:38:15 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/24 15:46:36 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/24 16:55:33 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,8 @@ int			pf_unsignedint(t_printf *p)
 	char		pad;
 	int			s_len;
 
-	if (!(s = (PID->precision == 0 && PID->base != 10 && PID->fmt->uim == 0)
-				? ft_strnew(0)
+	if (!(s = (PID->precision == 0 && PID->base != 10 && PID->fmt->uim == 0
+				&& p->type != P_TYPE) ? ft_strnew(0)
 				: ft_uintmax_to_ascii(PID->fmt->uim, PID->base, PID->xbase)))
 		return (-1);
 	pad = (p->pid->f_zero != -1 ? '0' : ' ');
