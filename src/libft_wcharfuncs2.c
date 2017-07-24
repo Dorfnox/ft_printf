@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_character.c                                     :+:      :+:    :+:   */
+/*   libft_wcharfuncs2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/18 15:14:57 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/24 13:37:28 by bpierce          ###   ########.fr       */
+/*   Created: 2017/07/24 14:40:53 by bpierce           #+#    #+#             */
+/*   Updated: 2017/07/24 14:51:20 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		pf_character(t_printf *p)
+wchar_t	*ft_wstrdup(wchar_t *ws)
 {
-	int		fw;
+	wchar_t	*tmp;
+	int		i;
 
-	fw = 0;
-	if (p->pid->f_ladj != -1)
+	if (!(tmp = ft_wstrnew(ft_wstrlen(ws))))
+		return (NULL);
+	i = 0;
+	while (ws[i])
 	{
-		ft_putchar(p->pid->fmt->c);
-		while (++fw < p->pid->field_width)
-			ft_putchar(' ');
+		tmp[i] = ws[i];
+		i++;
 	}
-	else
-	{
-		while (++fw < p->pid->field_width)
-			ft_putchar(' ');
-		ft_putchar(p->pid->fmt->c);
-	}
-	return (fw);
+	tmp[i] = ws[i];
+	return (tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/15 16:22:22 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/22 13:03:47 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/23 14:58:51 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ int		set_type(t_printf **p, char *s, int j)
 	if (ft_isconversionchar(s[j]))
 	{
 		(*p)->type = (s[j] == 's' ? S_TYPE : (*p)->type);
-		(*p)->type = (s[j] == 'S' ? SS_TYPE : (*p)->type);
+		(*p)->type = (s[j] == 'S' ? WS_TYPE : (*p)->type);
 		(*p)->type = ((s[j] == 'd' || s[j] == 'i') ? DI_TYPE : (*p)->type);
 		(*p)->type = (s[j] == 'D' ? DD_TYPE : (*p)->type);
 		(*p)->type = (s[j] == 'o' ? O_TYPE : (*p)->type);
@@ -142,7 +142,7 @@ int		set_type(t_printf **p, char *s, int j)
 		(*p)->type = (s[j] == 'x' ? X_TYPE : (*p)->type);
 		(*p)->type = (s[j] == 'X' ? XX_TYPE : (*p)->type);
 		(*p)->type = (s[j] == 'c' ? C_TYPE : (*p)->type);
-		(*p)->type = (s[j] == 'C' ? CC_TYPE : (*p)->type);
+		(*p)->type = (s[j] == 'C' ? WC_TYPE : (*p)->type);
 		(*p)->type = (s[j] == 'p' ? P_TYPE : (*p)->type);
 		(*p)->type = (s[j] == '%' ? PCNT_TYPE : (*p)->type);
 		(*p)->pid->base = (s[j] == 'x' || s[j] == 'X' ? 16 : (*p)->pid->base);

@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 18:23:30 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/23 11:45:01 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/24 14:50:49 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@
 # define IM_TYPE 28
 # define UIM_TYPE 29
 # define ST_TYPE 30
-# define WI_TYPE 31
-# define WC_TYPE 32
+# define WC_TYPE 31
+# define WS_TYPE 32
 
 /*
 ** Macros to check for signed types
@@ -139,8 +139,8 @@ typedef union			u_datafmt
 	int					c;
 	char				*s;
 	void				*p;
-	wint_t				wi;
-	wchar_t				*wc;
+	wchar_t				wc;
+	wchar_t				*ws;
 	intmax_t			im;
 	uintmax_t			uim;
 }						t_datafmt;
@@ -236,10 +236,13 @@ int						ft_isconversionchar(int c);
 int						ft_isnumericconversionchar(int c);
 
 /*
-** pf_{character, string, signedint, unsignedint, percent}.c
+** pf_{character, widechar, string, widestr, signedint, unsignedint,
+** percent}.c
 */
 
 int						pf_character(t_printf *p);
+int						pf_widechar(t_printf *p);
+int						pf_widestr(t_printf *p);
 int						pf_string(t_printf *p);
 int						pf_signedint(t_printf *p);
 int						pf_unsignedint(t_printf *p);
@@ -247,7 +250,8 @@ int						pf_percent(t_printf *p);
 
 /*
 ** Libft functions:
-** libft_{memfuncs, strfuncs1, strfuncs2, strfuncs3, strfuncs4, strfuncs5}.c
+** libft_{memfuncs, strfuncs1, strfuncs2, strfuncs3, strfuncs4, strfuncs5,
+** wcharfuncs, wcharfuncs2}.c
 */
 
 void					*ft_memset(void *b, int c, size_t len);
@@ -282,5 +286,13 @@ void					ft_strtolower(char **s);
 void					ft_strdeltwo(char **as, char **as2);
 void					ft_strdelthree(char **as, char **as2, char **as3);
 char					*ft_strffjoin(char **s1, char **s2);
+
+size_t					ft_wstrlen(wchar_t *s);
+wchar_t					*ft_wstrnew(size_t len);
+wchar_t					*ft_wstrsub(wchar_t *ws,
+						size_t start, size_t len);
+int						ft_putwchar(wchar_t wi);
+
+wchar_t					*ft_wstrdup(wchar_t *ws);
 
 #endif

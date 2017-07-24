@@ -6,7 +6,7 @@
 #    By: bpierce <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/25 10:27:14 by bpierce           #+#    #+#              #
-#    Updated: 2017/07/23 10:51:49 by bpierce          ###   ########.fr        #
+#    Updated: 2017/07/24 14:46:01 by bpierce          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,9 @@ FILES = ft_printf \
 		manage_percentid set_percentid set_helper \
 		manage_datafmt \
 		pf_character pf_string pf_signedint pf_unsignedint pf_percent \
+		pf_widechar pf_widestr\
 		libft_memfuncs libft_strfuncs1 libft_strfuncs2 libft_strfuncs3 \
-		libft_strfuncs4 libft_strfuncs5
+		libft_strfuncs4 libft_strfuncs5 libft_wcharfuncs1 libft_wcharfuncs2
 
 C_LOC = src/
 C_NAM = $(addsuffix .c, $(FILES))
