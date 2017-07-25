@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 18:23:30 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/24 14:50:49 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/24 18:31:16 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,6 +247,14 @@ int						pf_string(t_printf *p);
 int						pf_signedint(t_printf *p);
 int						pf_unsignedint(t_printf *p);
 int						pf_percent(t_printf *p);
+
+/*
+** free_funcs.c
+*/
+
+void					free_printf_datafmt(t_datafmt **fmt, int type);
+void					free_printf_percentid(t_percentid **pid);
+void					free_all_the_things(t_printf **head);
 
 /*
 ** Libft functions:

@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/23 14:02:41 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/24 14:50:25 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/24 17:49:47 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,14 @@ int		ft_putwchar(wchar_t wi)
 	unsigned int ui;
 
 	ui = (unsigned int)wi;
-	if (ui <= 127)
+	if (ui < 128)
 		ft_putchar(ui);
-	else if (ui <= 2047)
+	else if (ui < 2048)
 	{
 		ft_putchar(192 | (ui >> 6 & 63));
 		ft_putchar(128 | (ui & 63));
 	}
-	else if (ui <= 65535)
+	else if (ui < 65536)
 	{
 		ft_putchar(224 | (ui >> 12 & 63));
 		ft_putchar(128 | (ui >> 6 & 63));

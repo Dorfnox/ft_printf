@@ -6,7 +6,7 @@
 #    By: bpierce <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/25 10:27:14 by bpierce           #+#    #+#              #
-#    Updated: 2017/07/24 15:59:13 by bpierce          ###   ########.fr        #
+#    Updated: 2017/07/24 17:54:35 by bpierce          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ FILES = ft_printf \
 		manage_percentid set_percentid set_helper \
 		manage_datafmt \
 		pf_character pf_string pf_signedint pf_unsignedint pf_percent \
-		pf_widechar pf_widestr\
+		pf_widechar pf_widestr \
+		free_funcs \
 		libft_memfuncs libft_strfuncs1 libft_strfuncs2 libft_strfuncs3 \
 		libft_strfuncs4 libft_strfuncs5 libft_wcharfuncs1 libft_wcharfuncs2
 

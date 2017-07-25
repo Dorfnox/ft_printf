@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 15:39:32 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/22 18:01:50 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/24 18:32:37 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ int		ft_printf(char *s, ...)
 	}
 	if (i != 0 && i != -1)
 		i = print_printlst(&p2);
+	free_all_the_things(&p2);
 	return (i);
 }
