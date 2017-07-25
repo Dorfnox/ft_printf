@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 10:38:15 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/24 16:55:33 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/24 17:05:39 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,12 @@ static int	add_fieldwidth(char **str, char **chars, t_printf *p)
 	return (ft_strlen(*str));
 }
 
-static int	add_alt(char **str, int xbase, int f_alt)
+static int	add_alt(char **str, int xbase, int f_alt, int type)
 {
 	char	*alt;
 
-	if (f_alt == 16 && ft_strlen(*str) > 0 && (*str)[0] != '0')
+	if ((f_alt == 16 && ft_strlen(*str) > 0 && (*str)[0] != '0') ||
+		type == P_TYPE)
 	{
 		if (!(alt = ft_strnew(2)))
 			return (-1);
@@ -108,7 +109,7 @@ static int	add_prec(char **str, int num_of_zeros, int alt)
 	}
 	else if (alt == 8)
 	{
-		if ((add_alt(str, 0, alt)) == -1)
+		if ((add_alt(str, 0, alt, -1)) == -1)
 			return (-1);
 	}
 	return (ft_strlen(*str));
@@ -122,8 +123,8 @@ int			pf_unsignedint(t_printf *p)
 	int			s_len;
 
 	if (!(s = (PID->precision == 0 && PID->base != 10 && PID->fmt->uim == 0
-				&& p->type != P_TYPE) ? ft_strnew(0)
-				: ft_uintmax_to_ascii(PID->fmt->uim, PID->base, PID->xbase)))
+				? ft_strnew(0)
+				: ft_uintmax_to_ascii(PID->fmt->uim, PID->base, PID->xbase))))
 		return (-1);
 	pad = (p->pid->f_zero != -1 ? '0' : ' ');
 	s_len = ft_strlen(s);
@@ -131,7 +132,7 @@ int			pf_unsignedint(t_printf *p)
 		if ((s_len = add_prec(&s, PID->precision - s_len, PID->f_alt)) == -1)
 			return (-1);
 	if (PID->f_alt != -1 && PID->base == 16)
-		if ((s_len = add_alt(&s, PID->xbase, PID->f_alt)) == -1)
+		if ((s_len = add_alt(&s, PID->xbase, PID->f_alt, p->type)) == -1)
 			return (-1);
 	if (PID->field_width > s_len)
 	{
