@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 10:38:15 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/24 17:05:39 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/24 19:08:11 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,12 @@ static int	add_fieldwidth(char **str, char **chars, t_printf *p)
 			tmp = ft_strffjoin(&tmp, &tmp2);
 		}
 		else
-			tmp = ft_strfjoin(chars, *str);
-		ft_strdel(str);
+			tmp = ft_strffjoin(chars, str);
 	}
 	else
 	{
-		tmp = ft_strfjoin((p->pid->f_ladj != -1 ? str : chars),
-				(p->pid->f_ladj != -1 ? *chars : *str));
-		ft_strdel(p->pid->f_ladj != -1 ? chars : str);
+		tmp = ft_strffjoin((p->pid->f_ladj != -1 ? str : chars),
+				(p->pid->f_ladj != -1 ? chars : str));
 	}
 	*str = tmp;
 	return (ft_strlen(*str));
