@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 10:38:15 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/24 19:08:11 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/25 12:16:59 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int			pf_unsignedint(t_printf *p)
 				? ft_strnew(0)
 				: ft_uintmax_to_ascii(PID->fmt->uim, PID->base, PID->xbase))))
 		return (-1);
-	pad = (p->pid->f_zero != -1 ? '0' : ' ');
+	pad = (PID->f_zero != -1 ? '0' : ' ');
 	s_len = ft_strlen(s);
 	if (PID->precision > s_len || PID->f_alt == 8)
 		if ((s_len = add_prec(&s, PID->precision - s_len, PID->f_alt)) == -1)
@@ -134,8 +134,7 @@ int			pf_unsignedint(t_printf *p)
 			return (-1);
 	if (PID->field_width > s_len)
 	{
-		if (!(tmp = ft_strofchars(pad, p->pid->field_width - s_len)))
-			return (-1);
+		tmp = ft_strofchars(pad, p->pid->field_width - s_len);
 		if ((s_len = add_fieldwidth(&s, &tmp, p)) == -1)
 			return (-1);
 	}

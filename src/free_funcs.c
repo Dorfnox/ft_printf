@@ -6,11 +6,12 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/24 17:30:44 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/24 18:52:51 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/25 11:56:31 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
 /*
 ** s or ws point to same location in memory, so ft_strdel would work on either
 */

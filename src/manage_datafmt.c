@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 14:10:10 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/24 16:34:42 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/25 11:58:32 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,24 @@ static void			set_signed(t_printf **p, int type, va_list *ap)
 		IM = (intmax_t)va_arg(*ap, intmax_t);
 }
 
+static int			set_uniondata2(t_printf **p, int type, va_list *ap)
+{
+	if (type == WC_TYPE)
+	{
+		(*p)->pid->fmt->wc = va_arg(*ap, wchar_t);
+		(*p)->print_func = &pf_widechar;
+	}
+	else if (type == WS_TYPE)
+	{
+		if (!((*p)->pid->fmt->ws = ft_wstrdup(va_arg(*ap, wchar_t *))))
+			return (0);
+		(*p)->print_func = &pf_widestr;
+	}
+	else if (type == PCNT_TYPE)
+		(*p)->print_func = &pf_percent;
+	return (1);
+}
+
 static int			set_uniondata(t_printf **p, int type, va_list *ap)
 {
 	if (type == C_TYPE)
@@ -63,19 +81,8 @@ static int			set_uniondata(t_printf **p, int type, va_list *ap)
 		IS_SIGNED(type) ? set_signed(p, type, ap) : set_unsigned(p, type, ap);
 		(*p)->print_func = IS_SIGNED(type) ? &pf_signedint : &pf_unsignedint;
 	}
-	else if (type == WC_TYPE)
-	{
-		(*p)->pid->fmt->wc = va_arg(*ap, wchar_t);
-		(*p)->print_func = &pf_widechar;
-	}
-	else if (type == WS_TYPE)
-	{
-		if (!((*p)->pid->fmt->ws = ft_wstrdup(va_arg(*ap, wchar_t *))))
-			return (0);
-		(*p)->print_func = &pf_widestr;
-	}
-	else if (type == PCNT_TYPE)
-		(*p)->print_func = &pf_percent;
+	else
+		set_uniondata2(p, type, ap);
 	return (1);
 }
 

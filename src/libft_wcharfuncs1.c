@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/23 14:02:41 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/24 17:49:47 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/25 11:59:37 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	num_of_bytes(unsigned int ui)
 	return (4);
 }
 
-wchar_t	*ft_wstrnew(size_t len)
+wchar_t		*ft_wstrnew(size_t len)
 {
 	wchar_t	*str;
 
@@ -43,7 +43,7 @@ wchar_t	*ft_wstrnew(size_t len)
 	return (str);
 }
 
-wchar_t	*ft_wstrsub(wchar_t *ws, size_t start, size_t len)
+wchar_t		*ft_wstrsub(wchar_t *ws, size_t start, size_t len)
 {
 	wchar_t	*newstr;
 	size_t	i;
@@ -67,7 +67,7 @@ wchar_t	*ft_wstrsub(wchar_t *ws, size_t start, size_t len)
 ** Returns the number of bytes 'put'
 */
 
-int		ft_putwchar(wchar_t wi)
+int			ft_putwchar(wchar_t wi)
 {
 	unsigned int ui;
 

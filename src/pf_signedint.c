@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 10:38:15 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/23 13:17:57 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/25 12:18:06 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,7 @@ int			pf_signedint(t_printf *p)
 			return (-1);
 	if (p->pid->field_width > s_len)
 	{
-		if (!(tmp = ft_strofchars(pad, p->pid->field_width - s_len)))
-			return (-1);
+		tmp = ft_strofchars(pad, p->pid->field_width - s_len);
 		if (!(s_len = add_fieldwidth(&s, &tmp, p)))
 			return (-1);
 	}
