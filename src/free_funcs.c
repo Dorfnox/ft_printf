@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/24 17:30:44 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/24 18:29:37 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/24 18:52:51 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,17 @@ void	free_all_the_things(t_printf **head)
 		while (*head)
 		{
 			if ((*head)->type == STRING_TYPE)
+			{
 				ft_strdel(&((*head)->str));
-			else
+			}
+			else if ((*head)->type != -1)
 			{
 				free_printf_datafmt(&((*head)->pid->fmt), (*head)->type);
 				free_printf_percentid(&((*head)->pid));
-				tmp = *head;
-				*head = (*head)->next;
-				free(tmp);
 			}
+			tmp = *head;
+			*head = (*head)->next;
+			free(tmp);
 		}
 	}
 }
