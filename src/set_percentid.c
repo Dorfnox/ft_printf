@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/15 16:22:22 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/26 14:09:28 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/26 14:19:15 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ int		set_type(t_printf **p, char *s, int j)
 	if (ft_isconversionchar(s[j]))
 	{
 		(*p)->type = (s[j] == 's' ? S_TYPE : (*p)->type);
-		(*p)->type = (s[j] == 'S' ? WS_TYPE : (*p)->type);
+		(*p)->type = (s[j] == 'S' ? S_TYPE : (*p)->type);
 		(*p)->type = ((s[j] == 'd' || s[j] == 'i') ? DI_TYPE : (*p)->type);
 		(*p)->type = (s[j] == 'D' ? DD_TYPE : (*p)->type);
 		(*p)->type = (s[j] == 'o' ? O_TYPE : (*p)->type);
