@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/24 13:41:37 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/26 14:08:59 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/26 14:46:30 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int				pf_widestr(t_printf *p)
 	char	*fw;
 	int		wstr_len;
 	int		nsp;
-	int		i;
 
 	wstr_len = ft_wstrlen(p->pid->fmt->ws);
 	if (p->pid->precision != -1)
@@ -38,15 +37,10 @@ int				pf_widestr(t_printf *p)
 	if (nsp > 0)
 		if (!(fw = ft_strofchars(' ', nsp)))
 			return (-1);
-	i = 0;
 	if (PID->f_ladj != -1)
-		ft_wputstr(PID->fmt->ws);
-		//while (i < wstr_len)
-		//	ft_putwchar(PID->fmt->ws[i++]);
+		ft_putwstr(PID->fmt->ws);
 	nsp > 0 ? ft_putstr(fw) : 0;
 	if (PID->f_ladj == -1)
-		ft_wputstr(PID->fmt->ws);
-		//while (i < wstr_len)
-		//	ft_putwchar(PID->fmt->ws[i++]);
+		ft_putwstr(PID->fmt->ws);
 	return (ft_wstrlen(PID->fmt->ws) + (nsp > 0 ? ft_strlen(fw) : 0));
 }
