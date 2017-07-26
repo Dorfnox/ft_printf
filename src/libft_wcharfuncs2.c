@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/24 14:40:53 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/26 14:01:51 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/26 14:04:53 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,13 @@ wchar_t	*ft_wstrdup(wchar_t *ws)
 	}
 	tmp[i] = L'\0';
 	return (tmp);
+}
+
+void	ft_wputstr(wchar_t *ws)
+{
+	int i;
+
+	i = 0;
+	while (ws[i])
+		ft_wputchar(ws[i++]);
 }
