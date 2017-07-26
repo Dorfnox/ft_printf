@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 14:10:10 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/26 14:40:12 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/26 14:41:41 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,6 @@ static int			set_uniondata(t_printf **p, int type, va_list *ap)
 	{
 		(*p)->pid->fmt->s = ft_strdup(va_arg(*ap, char *));
 		(*p)->print_func = &pf_string;
-	}
-	else if (type == WS_TYPE)
-	{
-		(*p)->pid->fmt->s = ft_wstrdup(va_arg(*ap, wchar_t *));
-		(*p)->print_func = &pf_widestr;
 	}
 	else if (IS_SIGNED(type) || IS_UNSIGNED(type))
 	{
