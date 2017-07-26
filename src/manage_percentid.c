@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 15:01:27 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/26 14:33:40 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/26 14:38:05 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ static void			continue_readjusting_percentid(t_printf **p)
 		PFT = (PFT == OO_TYPE) ? UL_TYPE : PFT;
 		PFT = (PFT == UU_TYPE) ? UL_TYPE : PFT;
 		(*p)->pid->len = L_L;
+	}
+	if ((*p)->pid->len == L_L)
+	{
+		PFT = (PFT == S_TYPE) ? WS_TYPE : PFT;
+		PFT = (PFT == C_TYPE) ? WC_TYPE : PFT;
 	}
 	(*p)->pid->base = (PFT == P_TYPE) ? 16 : (*p)->pid->base;
 	(*p)->pid->f_alt = (PFT == P_TYPE) ? 16 : (*p)->pid->f_alt;
