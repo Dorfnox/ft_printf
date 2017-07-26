@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 15:01:27 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/26 14:14:52 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/26 14:29:31 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,14 @@
 
 static void			continue_readjusting_percentid(t_printf **p)
 {
-	//PFT == CC_TYPE || PFT == SS_TYPE ||
 	if (PFT == DD_TYPE || PFT == OO_TYPE || PFT == UU_TYPE)
 	{
-		//PFT = (PFT == CC_TYPE) ? WC_TYPE : PFT;
-		//PFT = (PFT == SS_TYPE) ? WS_TYPE : PFT;
 		PFT = (PFT == DD_TYPE) ? L_TYPE : PFT;
 		PFT = (PFT == OO_TYPE) ? UL_TYPE : PFT;
 		PFT = (PFT == UU_TYPE) ? UL_TYPE : PFT;
 		(*p)->pid->len = L_L;
-	}
+	}ft_putstr("\n");
+
 	(*p)->pid->base = (PFT == P_TYPE) ? 16 : (*p)->pid->base;
 	(*p)->pid->f_alt = (PFT == P_TYPE) ? 16 : (*p)->pid->f_alt;
 }
