@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/15 16:22:22 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/23 14:58:51 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/26 13:54:03 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ int		set_type(t_printf **p, char *s, int j)
 		(*p)->type = (s[j] == 'x' ? X_TYPE : (*p)->type);
 		(*p)->type = (s[j] == 'X' ? XX_TYPE : (*p)->type);
 		(*p)->type = (s[j] == 'c' ? C_TYPE : (*p)->type);
-		(*p)->type = (s[j] == 'C' ? WC_TYPE : (*p)->type);
+		(*p)->type = (s[j] == 'C' ? C_TYPE : (*p)->type);
 		(*p)->type = (s[j] == 'p' ? P_TYPE : (*p)->type);
 		(*p)->type = (s[j] == '%' ? PCNT_TYPE : (*p)->type);
 		(*p)->pid->base = (s[j] == 'x' || s[j] == 'X' ? 16 : (*p)->pid->base);
