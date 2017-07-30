@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 18:23:30 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/26 14:48:40 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/30 15:47:31 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <unistd.h>
 # include <wchar.h>
 # include <stdint.h>
-
-# include <stdio.h>
 
 /*
 ** Macros for saving space and general helpfulness
