@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/15 16:22:22 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/26 14:44:32 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/31 16:47:22 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,13 +138,16 @@ int		set_type(t_printf **p, char *s, int j)
 		(*p)->type = (s[j] == 'o' ? O_TYPE : (*p)->type);
 		(*p)->type = (s[j] == 'O' ? OO_TYPE : (*p)->type);
 		(*p)->type = (s[j] == 'u' ? U_TYPE : (*p)->type);
-		(*p)->type = (s[j] == 'U' ? UU_TYPE : (*p)->type);
+		(*p)->type = (s[j] == 'U' ? UL_TYPE : (*p)->type);
 		(*p)->type = (s[j] == 'x' ? X_TYPE : (*p)->type);
 		(*p)->type = (s[j] == 'X' ? XX_TYPE : (*p)->type);
 		(*p)->type = (s[j] == 'p' ? P_TYPE : (*p)->type);
 		(*p)->type = (s[j] == '%' ? PCNT_TYPE : (*p)->type);
+		(*p)->type = (s[j] == 'b' ? B_TYPE : (*p)->type);
+		(*p)->type = (s[j] == 'B' ? BB_TYPE : (*p)->type);
 		(*p)->pid->base = (s[j] == 'x' || s[j] == 'X' ? 16 : (*p)->pid->base);
 		(*p)->pid->base = (s[j] == 'o' || s[j] == 'O' ? 8 : (*p)->pid->base);
+		(*p)->pid->base = (s[j] == 'b' || s[j] == 'B' ? 2 : (*p)->pid->base);
 		(*p)->pid->xbase = (s[j] == 'X' ? 1 : -1);
 		F_ALT = (s[j] == 'x' || s[j] == 'X') && F_ALT != -1 ? 16 : F_ALT;
 		F_ALT = (s[j] == 'o' || s[j] == 'O') && F_ALT != -1 ? 8 : F_ALT;

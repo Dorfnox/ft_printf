@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 10:38:15 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/25 12:16:59 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/31 16:43:27 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,13 @@ static int	add_alt(char **str, int xbase, int f_alt, int type)
 	char	*alt;
 
 	if ((f_alt == 16 && ft_strlen(*str) > 0 && (*str)[0] != '0') ||
-		type == P_TYPE)
+		type == P_TYPE || type == BB_TYPE)
 	{
 		if (!(alt = ft_strnew(2)))
 			return (-1);
 		alt[0] = '0';
 		alt[1] = xbase != -1 ? 'X' : 'x';
+		alt[1] = (type == BB_TYPE) ? 'b' : alt[1];
 		if (!(*str = ft_strffjoin(&alt, str)))
 			return (-1);
 	}
@@ -129,7 +130,7 @@ int			pf_unsignedint(t_printf *p)
 	if (PID->precision > s_len || PID->f_alt == 8)
 		if ((s_len = add_prec(&s, PID->precision - s_len, PID->f_alt)) == -1)
 			return (-1);
-	if (PID->f_alt != -1 && PID->base == 16)
+	if (PID->f_alt != -1 && (PID->base == 16 || PID->base == 2))
 		if ((s_len = add_alt(&s, PID->xbase, PID->f_alt, p->type)) == -1)
 			return (-1);
 	if (PID->field_width > s_len)

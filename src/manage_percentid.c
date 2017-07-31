@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 15:01:27 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/26 14:38:05 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/31 15:50:14 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ static void			readjust_percentid(t_printf **p, char *s, int j)
 	PFT = (IS_DI(PFT)) && ((*p)->pid->len == L_H) ? SH_TYPE : PFT;
 	PFT = (IS_OUX(PFT)) && ((*p)->pid->len == L_H) ? USH_TYPE : PFT;
 	PFT = (IS_DI(PFT)) && ((*p)->pid->len == L_L) ? L_TYPE : PFT;
-	PFT = (IS_OUX(PFT)) && ((*p)->pid->len == L_L) ? UL_TYPE : PFT;
 	PFT = (IS_DI(PFT)) && ((*p)->pid->len == L_LL) ? LL_TYPE : PFT;
+	PFT = (IS_OUX(PFT)) && ((*p)->pid->len == L_L) ? UL_TYPE : PFT;
 	PFT = (IS_OUX(PFT)) && ((*p)->pid->len == L_LL) ? ULL_TYPE : PFT;
 	PFT = (IS_DI(PFT)) && ((*p)->pid->len == L_J) ? IM_TYPE : PFT;
 	PFT = (IS_OUX(PFT)) && ((*p)->pid->len == L_J) ? UIM_TYPE : PFT;

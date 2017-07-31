@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 18:23:30 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/30 15:47:31 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/31 16:23:39 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <wchar.h>
 # include <stdint.h>
 
+# include <stdio.h>
+
 /*
 ** Macros for saving space and general helpfulness
 */
@@ -30,8 +32,8 @@
 # define F_ALT (*p)->pid->f_alt
 # define UIM (*p)->pid->fmt->uim
 # define IM (*p)->pid->fmt->im
-# define CONVERSIONS "sSpdDioOuUxXcC%"
-# define NUM_CONVERSIONS "dDioOuUxX"
+# define CONVERSIONS "sSpdDioOuUxXcCbB%"
+# define NUM_CONVERSIONS "dDioOuUxXbB"
 # define LENGTHS "hljz"
 
 /*
@@ -53,6 +55,8 @@
 # define CC_TYPE 12
 # define P_TYPE 13
 # define PCNT_TYPE 14
+# define B_TYPE 15
+# define BB_TYPE 16
 
 /*
 ** Type promotion defines for length, and data type after length implementation

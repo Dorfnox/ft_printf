@@ -6,7 +6,7 @@
 /*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 14:10:10 by bpierce           #+#    #+#             */
-/*   Updated: 2017/07/26 14:41:41 by bpierce          ###   ########.fr       */
+/*   Updated: 2017/07/31 16:26:26 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void			set_unsigned(t_printf **p, int type, va_list *ap)
 		UIM = (uintmax_t)va_arg(*ap, unsigned long);
 	else if (IS_ULL(type))
 		UIM = (uintmax_t)va_arg(*ap, unsigned long long);
-	else if (IS_UIM(type) || IS_P(type))
+	else if (IS_UIM(type) || IS_P(type) || type == B_TYPE || type == BB_TYPE)
 		UIM = (uintmax_t)va_arg(*ap, uintmax_t);
 	else if (IS_ST(type))
 		UIM = (uintmax_t)va_arg(*ap, size_t);
@@ -80,6 +80,11 @@ static int			set_uniondata(t_printf **p, int type, va_list *ap)
 	{
 		IS_SIGNED(type) ? set_signed(p, type, ap) : set_unsigned(p, type, ap);
 		(*p)->print_func = IS_SIGNED(type) ? &pf_signedint : &pf_unsignedint;
+	}
+	else if (type == B_TYPE || type == BB_TYPE)
+	{
+		set_unsigned(p, type, ap);
+		(*p)->print_func = &pf_unsignedint;
 	}
 	else
 		set_uniondata2(p, type, ap);
